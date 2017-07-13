@@ -1,0 +1,104 @@
+<link rel="import" href="../../bower_components/neon-animation/neon-animation.html">
+<link rel="import" href="../../bower_components/neon-animation/neon-animations.html">
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../bower_components/paper-dialog/paper-dialog.html">
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<!--
+    Binds helper dialogs to other polymer elements.
+    @author: Franz Nieschalk
+-->
+
+<dom-module id="ontos-helper-dialog">
+	<template>
+
+		<!-- Routing -->
+
+		<!-- Requests -->
+
+		<!-- Style -->
+		<style is="custom-style">
+			:host {
+				display: inline-block;
+			}
+			:host.highlight {
+				outline: #fd0 solid 2px;
+			}
+		</style>
+
+		<!-- Content -->
+		<paper-dialog class="aligned-dialog"
+					  horizontal-align="auto"
+					  vertical-align="auto"
+					  no-overlap
+					  entry-animation="fade-in-animation"
+					  exit-animation="fade-out-animation"
+					  position-target="[[_getContainer()]]"
+					  sizing-target="[[_getContainer()]]"
+					  opened="[[_dialogOpened(helpEnabled, hovered)]]">
+			<content select=".dialog-content"></content>
+		</paper-dialog>
+		<content select=":not(.dialog-content)"></content>
+
+	</template>
+
+	<script>Polymer({
+
+		/* Component */
+		is: "ontos-helper-dialog",
+		behaviors: [
+			Polymer.IronA11yKeysBehavior
+		],
+		keyBindings: {
+			"h": "_onHelpPress"
+		},
+		properties: {
+			keyEventTarget: {
+				type: Object,
+				value: function() {
+					return document.body;
+				}
+			},
+			helpEnabled: {
+				type: Boolean,
+				value: false,
+				observer: "observeHelpEnabled"
+			}
+		},
+
+		/* Computations */
+
+		/* Observers */
+		observers: [],
+		observeHelpEnabled: function(newValue, oldValue) {
+			this.toggleClass("highlight", newValue);
+		},
+
+		/* Listeners */
+		listeners: {
+			"mouseover": "_onMouseOver",
+			"mouseout": "_onMouseOut"
+		},
+		_onMouseOver: function(event) {
+			this.set("hovered", true);
+		},
+		_onMouseOut: function(event) {
+			this.set("hovered", false);
+		},
+		_onHelpPress: function(event) {
+			this.helpEnabled = !this.helpEnabled;
+		},
+
+		/* Private */
+		_getContainer: function() {
+			return this;
+		},
+		_dialogOpened: function(helpEnabled, hovered) {
+			return helpEnabled && hovered;
+		}
+
+		/* Public */
+
+
+	});</script>
+</dom-module>

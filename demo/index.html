@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+		<title>ontos-helper-dialog demo</title>
+
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+		<link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+		<link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+		<link rel="import" href="../ontos-helper-dialog.html">
+		<link rel="import" href="../ontos-simple-helper.html">
+		<link rel="import" href="../../../bower_components/iron-icon/iron-icon.html">
+		<link rel="import" href="../../../bower_components/paper-input/paper-input.html">
+
+		<style is="custom-style" include="demo-pages-shared-styles">
+		</style>
+	</head>
+	<body>
+		<div class="vertical-section-container centered">
+			<h3>Basic ontos-helper-dialog demo</h3>
+			<demo-snippet>
+				<template>
+					<ontos-helper-dialog>
+						<ontos-simple-helper class="dialog-content"
+											 title="User name"
+											 text="Enter your username here">
+						</ontos-simple-helper>
+						<paper-input></paper-input>
+					</ontos-helper-dialog>
+					<ontos-helper-dialog>
+						<ontos-simple-helper class="dialog-content"
+											 title="Save"
+											 text="Save your changes by clicking this icon">
+						</ontos-simple-helper>
+						<iron-icon icon="save"></iron-icon>
+					</ontos-helper-dialog>
+				</template>
+			</demo-snippet>
+		</div>
+	</body>
+</html>
